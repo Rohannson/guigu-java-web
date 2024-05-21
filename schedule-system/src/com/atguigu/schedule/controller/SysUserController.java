@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -41,6 +42,10 @@ public class SysUserController extends BaseController {
         } else if (!MD5Util.encrypt(userPwd).equals(loginUser.getUserPwd())){
             resp.sendRedirect("/loginPwdError.html");
         } else {
+            // 登陆成功以后,将登陆的用户信息放入Session
+            HttpSession session = req.getSession();
+            session.setAttribute("sysUser", loginUser);
+
             resp.sendRedirect("/showSchedule.html");
         }
     }
