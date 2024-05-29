@@ -32,6 +32,27 @@ public class SysUserController extends BaseController {
         }
     }
 
+    /**
+     * 注册时,接受要注册的用户名,校验用户是否被占用的业务借口
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void checkUsernameUsed(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 接收用户名
+        String username = req.getParameter("username");
+        // 调用服务层业务处理方法查询该用户名是否有对应的用户
+        SysUser sysUser = userService.findByUsername(username);
+        // 有 响应已经占用
+        String info = "Avaliable";
+        if (null != sysUser) {
+            info = "Not avaliable";
+        }
+        // 没有 响应没有占用
+        resp.getWriter().println(info);
+    }
+
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String userPwd = req.getParameter("userPwd");

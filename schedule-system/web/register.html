@@ -53,10 +53,28 @@
                 usernameMsg.innerText="格式有误"
                 return false
             }
-            usernameMsg.innerText="OK"
-            return true
-        }
 
+
+
+
+
+
+            // 校验用户是否被占用
+            var request = new XMLHttpRequest();
+            // 设置回调函数, 响应回来的信息如何处理
+            request.onreadystatechange = function (){
+                if (request.readyState == 4 && request.status == 200){
+                    usernameMsg.innerText = request.responseText
+                }
+            }
+            // 设置请求方式的资源路径
+            request.open("GET","/user/checkUsernameUsed?username="+username)
+            // 发送请求
+            request.send()
+
+            // usernameMsg.innerText="OK"
+            // return true
+        }
 
         function checkUserPwd(){
             var userPwdReg = /^\d{6}$/
@@ -70,7 +88,6 @@
             userPwdMsg.innerText="OK"
             return true
         }
-
 
         function checkReUserPwd(){
             var userPwdReg = /^\d{6}$/
@@ -92,7 +109,6 @@
             reUserPwdMsg.innerText="OK"
             return true
         }
-
 
         function checkForm(){
             var flag1 = checkUsername()

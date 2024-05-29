@@ -21,8 +21,5 @@ public class SysUserServiceImpl implements SysUserService {
         return userDao.findByUsername(username);
     }
 
-    /*
-     * Acquire the complete username method
-     */
 
 }
