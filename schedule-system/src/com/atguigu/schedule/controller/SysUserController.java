@@ -45,9 +45,9 @@ public class SysUserController extends BaseController {
         // 调用服务层业务处理方法查询该用户名是否有对应的用户
         SysUser sysUser = userService.findByUsername(username);
         // 有 响应已经占用
-        String info = "Avaliable";
+        String info = "Available";
         if (null != sysUser) {
-            info = "Not avaliable";
+            info = "Not available";
         }
         // 没有 响应没有占用
         resp.getWriter().println(info);
