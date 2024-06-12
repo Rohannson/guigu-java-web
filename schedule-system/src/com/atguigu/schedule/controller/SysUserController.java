@@ -1,9 +1,13 @@
 package com.atguigu.schedule.controller;
 
+import com.atguigu.schedule.common.Result;
+import com.atguigu.schedule.common.ResultCodeEnum;
 import com.atguigu.schedule.pojo.SysUser;
 import com.atguigu.schedule.service.SysUserService;
 import com.atguigu.schedule.service.impl.SysUserServiceImpl;
 import com.atguigu.schedule.util.MD5Util;
+import com.atguigu.schedule.util.WebUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,13 +48,17 @@ public class SysUserController extends BaseController {
         String username = req.getParameter("username");
         // 调用服务层业务处理方法查询该用户名是否有对应的用户
         SysUser sysUser = userService.findByUsername(username);
+        Result result = Result.ok(null);
+
         // 有 响应已经占用
-        String info = "Available";
-        if (null != sysUser) {
-            info = "Not available";
-        }
         // 没有 响应没有占用
-        resp.getWriter().println(info);
+
+        if (null != sysUser) {
+            result = Result.build(null, ResultCodeEnum.USERNAME_USED);
+        }
+        // 告诉客户端响应给你的是一个Json字符串
+        WebUtil.writeJson(resp,result);
+
     }
 
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
