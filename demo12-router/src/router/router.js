@@ -32,6 +32,10 @@ const router = createRouter({
         {
             path:"/",
             component: Home
+        },
+        {
+            path:"/showAll",
+            redirect:"/list"
         }
     ]
 })

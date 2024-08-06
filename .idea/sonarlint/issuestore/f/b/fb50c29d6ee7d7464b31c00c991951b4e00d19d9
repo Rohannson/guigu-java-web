@@ -1,0 +1,20 @@
+
+E
+java:S37403"/Provide the parametrized type for this generic.(«‡É 
+H
+java:S1948"-Make "userService" transient or serializable.(¤é¼ÿÿÿÿÿ
+
+java:S1130"yRemove the declaration of thrown exception 'jakarta.servlet.ServletException', as it cannot be thrown from method's body.(¥ëÎ
+
+java:S1130."yRemove the declaration of thrown exception 'jakarta.servlet.ServletException', as it cannot be thrown from method's body.(ãÒ¡ı
+‚
+java:S1130."lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ãÒ¡ı
+”
+java:S1130@"yRemove the declaration of thrown exception 'jakarta.servlet.ServletException', as it cannot be thrown from method's body.(Ğğ£Ãÿÿÿÿÿ
+^
+java:S1128
+"HRemove this unused import 'com.fasterxml.jackson.databind.ObjectMapper'.(´‘¨™
+X
+java:S1128"=Remove this unused import 'jakarta.servlet.http.HttpServlet'.(‘²şäıÿÿÿÿ
+d
+java:S1192"IDefine a constant instead of duplicating this literal "username" 3 times.(éœë¾øÿÿÿÿ

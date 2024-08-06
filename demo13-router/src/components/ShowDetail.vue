@@ -1,21 +1,30 @@
 <script setup>
 //  接受传递过来的路径参数
 // useRoute函数是用来接收参数
-// route.param表示路径参数
+// route.params表示路径参数
 // route.query
 
-  import {useRoute} from 'vue-router'
-  import {ref} from 'vue'
+  import {useRoute} from "vue-router";
+  import {ref, onUpdated} from 'vue'
+
+  let languageId = ref(0)
+  let languageName = ref("")
 
   let route = useRoute()
-  route.param.id
-  route.param.language
+  languageId.value = route.params.id
+  languageName.value = route.params.language
+
+  onUpdated(()=>{
+    languageId.value = route.params.id
+    languageName.value = route.params.language
+  })
 
 </script>
 
 <template>
   <div>
     <h1> ShowDetail接收路径参数 </h1>
+    <h3> {{languageId}}{{languageName}}是世界上最好的语言 </h3>
   </div>
 </template>
 
