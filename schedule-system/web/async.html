@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML5 Boilerplate</title>
+</head>
+
+<body>
+    <script>
+
+        async function fun1() {
+            return 10
+        }
+
+        async function fun2() {
+            let res = await fun1()
+            console.log("await got: " + res)
+        }
+
+        fun2()
+        // async function fun1() {
+        //     return 10
+        // }
+        //
+        // let promise = fun1()
+        //
+        // promise.then(
+        //     function (value) {
+        //         console.log("success" + value)
+        //     }
+        // ).catch(
+        //     function () {}
+        // )
+    </script>
+</body>
+
+</html>
