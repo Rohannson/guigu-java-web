@@ -1,4 +1,9 @@
 <script setup>
+  // 导入Pinia数据
+  import {defineUser} from '../store/userStore.js'
+  import {defineSchedule} from '../store/scheduleStore.js'
+  let sysUser = defineUser()
+  let schedule = defineSchedule()
 
 </script>
 
@@ -12,10 +17,13 @@
         <th>进度</th>
         <th>操作</th>
       </tr>
-      <tr class="ltr">
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr class="ltr" v-for="item,index in schedule.itemList" :key="index">
+        <td v-text = "index + 1"></td>
+        <td v-text = "item.title"></td>
+        <td>
+            <input type="radio" value="1" v-model="item.completed"> Completed
+            <input type="radio" value="0" v-model="item.completed"> Incomplete
+        </td>
         <td class="buttonContainer">
           <button class="btn1">删除</button>
           <button class="btn1">保存修改</button>
