@@ -24,4 +24,10 @@ public class SysScheduleDaoImpl extends BaseDao implements SysScheduleDao {
         List<SysSchedule> sysScheduleList = baseQuery(SysSchedule.class, sql);
         return sysScheduleList;
     }
+
+    @Override
+    public Integer removeSchedule(int sid) {
+        String sql = "delete from sys_schedule where sid = ?";
+        return baseUpdate(sql, sid);
+    }
 }

@@ -10,4 +10,5 @@ public interface SysScheduleDao {
 
     List<SysSchedule> findAll();
 
+    Integer removeSchedule(int sid);
 }
