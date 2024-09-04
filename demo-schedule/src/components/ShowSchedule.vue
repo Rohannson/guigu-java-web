@@ -42,6 +42,17 @@
     }
   }
 
+  async function removeItem() {
+    let sid = schedule.itemList[index].sid
+    let {data} = await request.get('schedule/removeSchedule', {params: {"sid": sid}})
+    if (data.code == 200) {
+      showSchedule()
+      alert("Delete Successful")
+    } else {
+      alert("Delete Failed")
+    }
+  }
+
 </script>
 
 <template>
@@ -64,7 +75,7 @@
           <input type="radio" value="0" v-model="item.completed"> Incomplete
         </td>
         <td class="buttonContainer">
-          <button class="btn1">删除</button>
+          <button class="btn1" @click="removeItem(index)">删除</button>
           <button class="btn1" @click="updateItem(index)">保存修改</button>
         </td>
       </tr>

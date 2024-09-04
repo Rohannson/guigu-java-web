@@ -47,6 +47,7 @@
     }
 
     let {data} = await request.post("user/login", loginUser)
+    console.log("Here is login data: " + data)
     if (data.code == 200) {
       alert("Login Success")
 

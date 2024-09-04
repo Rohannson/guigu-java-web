@@ -1,5 +1,9 @@
 package com.atguigu.schedule.controller;
 
+import com.atguigu.schedule.common.Result;
+import com.atguigu.schedule.service.SysScheduleService;
+import com.atguigu.schedule.service.impl.SysScheduleServiceImpl;
+import com.atguigu.schedule.util.WebUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,7 +15,7 @@ import java.lang.reflect.Method;
 
 @WebServlet("/schedule/*")
 public class SysScheduleController extends BaseController {
-
+    private SysScheduleService sysScheduleService = new SysScheduleServiceImpl();
     protected void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("add");
     }
@@ -24,8 +28,12 @@ public class SysScheduleController extends BaseController {
         System.out.println("update");
     }
 
-    protected void remove(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("remove");
+    protected void removeSchedule(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int sid = Integer.parseInt(req.getParameter("sid"));
+
+        sysScheduleService.removeSchedule(sid);
+
+        WebUtil.writeJson(resp, Result.ok(null));
     }
 
 }
