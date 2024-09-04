@@ -1,6 +1,14 @@
 <script setup>
   import {ref, reactive} from "vue";
 
+  import request from '../utils/request'
+  import {useRouter} from "vue-router";
+
+  const router = useRouter()
+
+  import {defineUser} from '../store/userStore.js'
+  let sysUser = defineUser()
+
   let loginUser = reactive({
     username:"",
     userPwd:""
@@ -11,12 +19,49 @@
 
   function checkUsername() {
     let usernameReg = /^[a-zA-Z0-9]{5,10}$/
-    if (usernameReg.test(loginUser.username)){
+    if (!usernameReg.test(loginUser.username)){
       usernameMsg.value="Wrong Format"
       return false
     }
     usernameMsg.value = "OK"
     return true
+  }
+
+  function checkUserPwd() {
+    let userPwdReg = /^[0-9]{6}$/
+
+    if (!userPwdReg.test(loginUser.userPwd)) {
+      userPwdMsg.value = "Wrong Format"
+      return false
+    }
+
+    userPwdMsg.value = "OK"
+    return true
+  }
+
+  async function login() {
+    let flag1 = checkUsername()
+    let flag2 = checkUserPwd()
+    if (!(flag1 && flag2)) {
+      return
+    }
+
+    let {data} = await request.post("user/login", loginUser)
+    if (data.code == 200) {
+      alert("Login Success")
+
+      // 将用户信息更新到Pinia中
+      sysUser.uid = data.data.loginUser.uid
+      sysUser.username = data.data.loginUser.username
+
+      router.push("/showSchedule")
+    } else if (data.code == 501) {
+      alert("Wrong Username")
+    } else if (data.code == 503) {
+      alert("Wrong Password")
+    } else {
+      alert("Unknown Error")
+    }
   }
 
 </script>
@@ -47,7 +92,7 @@
       </tr>
       <tr class="ltr">
         <td colspan="2" class="buttonContainer">
-          <input class="btn1" type="button" value="登录">
+          <input class="btn1" type="button" @click="login()" value="登录">
           <input class="btn1" type="button" value="重置">
           <router-link to="/regist">
             <button class="btn1">去注册</button>
