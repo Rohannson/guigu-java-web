@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="druid-1.1.21">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/druid-1.1.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/jackson-annotations-2.13.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/jackson-core-2.13.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/jackson-databind-2.13.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/jaxb-api-2.3.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/jjwt-0.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lombok-1.18.24.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/mysql-connector-java-8.0.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
